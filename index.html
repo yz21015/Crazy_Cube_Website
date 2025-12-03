@@ -59,23 +59,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        /* Modal Transitions */
-        #booking-modal {
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-        }
-
-        #booking-modal.hidden-modal {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        #booking-modal.visible-modal {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
     </style>
 </head>
 
@@ -95,7 +78,7 @@
                     VR</a>
                 <a href="#arcade" class="hover:text-[var(--neon-yellow)] transition-colors duration-300">Classic
                     Arcade</a>
-                <!-- Updated Button with onclick -->
+                <a href="#bar" class="hover:text-purple-500 transition-colors duration-300">Bar</a>
                 <button onclick="openBookingModal()"
                     class="bg-white text-black px-6 py-2 hover:bg-[var(--neon-cyan)] hover:text-black transition-all duration-300 font-bold skew-x-[-10deg]">
                     <span class="skew-x-[10deg] inline-block">BOOK NOW</span>
@@ -149,21 +132,50 @@
                         class="text-[var(--neon-magenta)]">shaking ground</span> beneath your feet.
                 </p>
 
-                <!-- 50+ Experiences Block -->
-                <div class="mb-12 py-8 border-t border-b border-white/10 bg-black/40 backdrop-blur-sm">
-                    <p class="text-2xl md:text-4xl font-bold uppercase brand-font tracking-wider">
-                        <span class="text-[var(--neon-magenta)] text-5xl md:text-6xl">50+</span>
-                        <span class="text-white">Unique Experiences</span>
-                    </p>
-                    <p class="text-[var(--neon-cyan)] font-bold tracking-[0.3em] text-sm mt-2 uppercase">
-                        For You To Discover!
-                    </p>
+                <!-- Sensory Features Grid -->
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 border-t border-b border-white/10 py-8 bg-black/30 backdrop-blur-sm">
+                    <div class="flex flex-col items-center gap-2 group">
+                        <div
+                            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[var(--neon-magenta)] group-hover:bg-[var(--neon-magenta)]/10 transition-all">
+                            <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span
+                            class="text-xs font-bold tracking-widest uppercase text-gray-400 group-hover:text-white">4-Player
+                            Squad</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group">
+                        <div
+                            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-orange-500 group-hover:bg-orange-500/10 transition-all">
+                            <i data-lucide="flame" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span
+                            class="text-xs font-bold tracking-widest uppercase text-gray-400 group-hover:text-white">Physical
+                            Heat</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group">
+                        <div
+                            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[var(--neon-cyan)] group-hover:bg-[var(--neon-cyan)]/10 transition-all">
+                            <i data-lucide="wind" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span
+                            class="text-xs font-bold tracking-widest uppercase text-gray-400 group-hover:text-white">Real
+                            Wind</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 group">
+                        <div
+                            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[var(--neon-yellow)] group-hover:bg-[var(--neon-yellow)]/10 transition-all">
+                            <i data-lucide="activity" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <span
+                            class="text-xs font-bold tracking-widest uppercase text-gray-400 group-hover:text-white">Shaking
+                            Floor</span>
+                    </div>
                 </div>
 
                 <!-- CTAs -->
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <!-- Updated Button with onclick -->
-                    <button onclick="openBookingModal()"
+                    <button
                         class="bg-[var(--neon-cyan)] text-black px-8 py-4 font-bold uppercase tracking-wider hover:bg-white transition-colors duration-300 skew-x-[-10deg]">
                         <span class="skew-x-[10deg] inline-block">Book Your Mission</span>
                     </button>
@@ -255,234 +267,163 @@
                 </div>
 
             </div>
+
+            <!-- 50+ Experiences Block -->
+            <div class="mt-16 py-8 border-t border-b border-white/10 bg-black/40 backdrop-blur-sm text-center">
+                <p class="text-2xl md:text-4xl font-bold uppercase brand-font tracking-wider">
+                    <span class="text-[var(--neon-magenta)] text-5xl md:text-6xl">50+</span>
+                    <span class="text-white">Unique Experiences</span>
+                </p>
+                <p class="text-[var(--neon-cyan)] font-bold tracking-[0.3em] text-sm mt-2 uppercase">
+                    For You To Discover!
+                </p>
+            </div>
         </div>
     </section>
 
     <!-- SECTION 3: CLASSIC ARCADE -->
     <section id="arcade" class="py-24 relative overflow-hidden bg-[#0a0a0a]">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-10"
-            style="background-image: radial-gradient(#333 1px, transparent 1px); background-size: 20px 20px;"></div>
-
-        <!-- Game Cover Collage Strip (Faded Background) -->
-        <div
-            class="absolute top-1/2 transform -translate-y-1/2 w-full h-[300px] opacity-10 rotate-[-3deg] scale-110 pointer-events-none">
-            <img src="69468e50b214401481c230151a9e4612.jpg" class="w-full h-full object-cover grayscale"
-                alt="Game Covers">
+        <!-- ... existing code inside arcade section ... -->
         </div>
+        </div>
+    </section>
 
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-20">
-                <span
-                    class="inline-block border border-[var(--neon-yellow)] text-[var(--neon-yellow)] px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-4">Level
-                    3 // RETRO ZONE</span>
-                <h2 class="text-5xl md:text-7xl font-black uppercase brand-font mb-6">
-                    Arcade <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--neon-yellow)] to-orange-500">Legends</span>
-                </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Take a break from the metaverse and test your physical skills. From hoops to hooks, we've got the
-                    classics that started it all.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                <!-- Arcade Card 1 -->
-                <div
-                    class="bg-[#111] p-8 border-t-4 border-[var(--neon-yellow)] hover:transform hover:-translate-y-2 transition-all duration-300 group">
+    <!-- SECTION 4: THE BAR -->
+    <section id="bar" class="py-24 bg-black relative border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Bar Image -->
+                <div class="relative group">
                     <div
-                        class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[var(--neon-yellow)] group-hover:text-black transition-colors">
-                        <i data-lucide="trophy" class="w-8 h-8"></i>
+                        class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 brand-font">Hoops Fever</h3>
-                    <p class="text-gray-400 text-sm mb-6">
-                        Compete for the high score on our connected basketball machines. Link up with friends for
-                        head-to-head battles.
-                    </p>
-                    <ul class="text-xs font-mono text-gray-500 space-y-2">
-                        <li class="flex items-center gap-2">
-                            <div class="w-1 h-1 bg-[var(--neon-yellow)]"></div> MOVING HOOPS
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <div class="w-1 h-1 bg-[var(--neon-yellow)]"></div> GLOBAL LEADERBOARD
-                        </li>
-                    </ul>
+                    <div class="relative rounded-lg overflow-hidden border border-white/10">
+                        <img src="IMG_3339.jpg" alt="Crazy Cube Bar"
+                            class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60">
+                        </div>
+                        <div class="absolute bottom-6 left-6">
+                            <h3 class="text-3xl font-bold brand-font text-white">REFUEL <span
+                                    class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">STATION</span>
+                            </h3>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Arcade Card 2 -->
-                <div
-                    class="bg-[#111] p-8 border-t-4 border-orange-500 hover:transform hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-orange-500 group-hover:text-black transition-colors">
-                        <i data-lucide="swords" class="w-8 h-8"></i>
+                <!-- Menu -->
+                <div class="space-y-8">
+                    <div class="text-center lg:text-left">
+                        <span
+                            class="inline-block border border-purple-500 text-purple-500 px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-4">Level
+                            4 // CHILL ZONE</span>
+                        <h2 class="text-4xl md:text-5xl font-black uppercase brand-font mb-4">
+                            The <span class="text-white">Bar</span>
+                        </h2>
+                        <p class="text-gray-400">
+                            Recharge after your mission. Serving craft cocktails, mocktails, and energy boosts for the
+                            next round.
+                        </p>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 brand-font">Power Boxing</h3>
-                    <p class="text-gray-400 text-sm mb-6">
-                        Test your strength. The ultimate stress relief machine with precise force measurement and impact
-                        feedback.
-                    </p>
-                    <ul class="text-xs font-mono text-gray-500 space-y-2">
-                        <li class="flex items-center gap-2">
-                            <div class="w-1 h-1 bg-orange-500"></div> POWER TRACKING
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <div class="w-1 h-1 bg-orange-500"></div> MULTIPLE MODES
-                        </li>
-                    </ul>
-                </div>
 
-                <!-- Arcade Card 3 -->
-                <div
-                    class="bg-[#111] p-8 border-t-4 border-red-500 hover:transform hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-red-500 group-hover:text-black transition-colors">
-                        <i data-lucide="gamepad-2" class="w-8 h-8"></i>
+                    <!-- Placeholder Menu Grid -->
+                    <div class="bg-[#111] border border-white/10 p-6 rounded-lg relative overflow-hidden">
+                        <!-- Decorative Scanline -->
+                        <div
+                            class="absolute top-0 left-0 w-full h-1 bg-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.5)] animate-[scan_3s_linear_infinite]">
+                        </div>
+
+                        <h4 class="text-xl font-bold text-center mb-6 border-b border-white/10 pb-2">HOLOGRAPHIC MENU
+                        </h4>
+
+                        <div class="space-y-6">
+                            <!-- Category: Signature Cocktails -->
+                            <div>
+                                <h5
+                                    class="text-purple-400 font-bold text-sm tracking-widest mb-3 flex items-center gap-2">
+                                    <i data-lucide="martini" class="w-4 h-4"></i> SIGNATURE ELIXIRS
+                                </h5>
+                                <ul class="space-y-3 text-sm">
+                                    <li class="flex justify-between items-center group cursor-pointer">
+                                        <span class="text-gray-300 group-hover:text-white transition-colors">Neon Night
+                                            (Vodka, Blue Curacao, Lemon)</span>
+                                        <span class="text-purple-400 font-mono">£9.50</span>
+                                    </li>
+                                    <li class="flex justify-between items-center group cursor-pointer">
+                                        <span class="text-gray-300 group-hover:text-white transition-colors">System
+                                            Failure (Rum, Overproof, Lime)</span>
+                                        <span class="text-purple-400 font-mono">£10.00</span>
+                                    </li>
+                                    <li class="flex justify-between items-center group cursor-pointer">
+                                        <span class="text-gray-300 group-hover:text-white transition-colors">Pixel
+                                            Perfect (Gin, Elderflower, Mint)</span>
+                                        <span class="text-purple-400 font-mono">£9.00</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Category: Mocktails & Energy -->
+                            <div>
+                                <h5
+                                    class="text-[var(--neon-cyan)] font-bold text-sm tracking-widest mb-3 flex items-center gap-2">
+                                    <i data-lucide="zap" class="w-4 h-4"></i> ZERO GRAVITY (NO ALC)
+                                </h5>
+                                <ul class="space-y-3 text-sm">
+                                    <li class="flex justify-between items-center group cursor-pointer">
+                                        <span class="text-gray-300 group-hover:text-white transition-colors">Cyber
+                                            Slushie (Raspberry & Lime)</span>
+                                        <span class="text-[var(--neon-cyan)] font-mono">£5.50</span>
+                                    </li>
+                                    <li class="flex justify-between items-center group cursor-pointer">
+                                        <span class="text-gray-300 group-hover:text-white transition-colors">Mana Potion
+                                            (Energy Drink Mix)</span>
+                                        <span class="text-[var(--neon-cyan)] font-mono">£4.50</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Category: Snacks -->
+                            <div>
+                                <h5
+                                    class="text-[var(--neon-yellow)] font-bold text-sm tracking-widest mb-3 flex items-center gap-2">
+                                    <i data-lucide="utensils" class="w-4 h-4"></i> LOOT BOXES (FOOD)
+                                </h5>
+                                <ul class="space-y-3 text-sm">
+                                    <li class="flex justify-between items-center group cursor-pointer">
+                                        <span class="text-gray-300 group-hover:text-white transition-colors">Loaded
+                                            Nachos v2.0</span>
+                                        <span class="text-[var(--neon-yellow)] font-mono">£7.00</span>
+                                    </li>
+                                    <li class="flex justify-between items-center group cursor-pointer">
+                                        <span class="text-gray-300 group-hover:text-white transition-colors">Hot Dog &
+                                            Fries Combo</span>
+                                        <span class="text-[var(--neon-yellow)] font-mono">£8.50</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 text-center">
+                            <button
+                                class="text-xs text-gray-500 border border-white/10 px-4 py-2 hover:bg-white hover:text-black transition-colors uppercase tracking-widest">
+                                View Full Menu PDF
+                            </button>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 brand-font">Retrocade</h3>
-                    <p class="text-gray-400 text-sm mb-6">
-                        A curated collection of fighting games and side-scrollers from the golden age of arcades.
-                    </p>
-                    <ul class="text-xs font-mono text-gray-500 space-y-2">
-                        <li class="flex items-center gap-2">
-                            <div class="w-1 h-1 bg-red-500"></div> STREET FIGHTER II
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <div class="w-1 h-1 bg-red-500"></div> TEKKEN
-                        </li>
-                    </ul>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black border-t border-white/10 pt-16 pb-8">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-10">
-                <div class="text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
-                        <img src="WechatIMG78.png" alt="Logo" class="h-10 w-auto">
-                        <span class="brand-font text-2xl font-bold">CRAZY CUBE</span>
-                    </div>
-                    <p class="text-gray-500 text-sm max-w-xs">
-                        The future of entertainment is here. Located in the heart of the city.
-                    </p>
-                </div>
-
-                <div class="flex gap-6">
-                    <a href="#"
-                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--neon-cyan)] hover:text-black transition-colors">
-                        <i data-lucide="instagram" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#"
-                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--neon-magenta)] hover:text-black transition-colors">
-                        <i data-lucide="twitter" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#"
-                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--neon-yellow)] hover:text-black transition-colors">
-                        <i data-lucide="facebook" class="w-5 h-5"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="mt-16 pt-8 border-t border-white/5 text-center text-gray-600 text-xs font-mono">
-                &copy; 2024 CRAZY CUBE VR. ALL RIGHTS RESERVED.
-            </div>
-        </div>
-    </footer>
-
-    <!-- BOOKING MODAL (NEW ADDITION) -->
-    <div id="booking-modal" class="hidden-modal fixed inset-0 z-[100] flex items-center justify-center">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="closeBookingModal()"></div>
-
-        <!-- Modal Content -->
-        <div
-            class="relative z-10 w-full max-w-4xl h-[90vh] bg-[#111] border border-[var(--neon-cyan)] shadow-2xl overflow-hidden flex flex-col">
-            <!-- Header -->
-            <div class="flex justify-between items-center p-4 border-b border-white/10 bg-black">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-[var(--neon-cyan)] rounded-full animate-pulse"></span>
-                    <span class="brand-font text-xl font-bold">BOOK MISSION</span>
-                </div>
-                <button onclick="closeBookingModal()" class="text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="x" class="w-8 h-8"></i>
-                </button>
-            </div>
-
-            <!-- Embed Container -->
-            <div class="flex-1 overflow-y-auto p-4 bg-white/5" id="square-embed-container">
-                <!-- 
-                    =============== SQUARE BOOKING INSTRUCTIONS ===============
-                    1. Go to your Square Dashboard > Appointments > Online Booking.
-                    2. Copy the Website Embed code (it is usually a script or iframe).
-                    3. Delete the "placeholder-content" div below.
-                    4. Paste your code here.
-                -->
-
-                <!-- [START] PLACEHOLDER CONTENT (DELETE THIS AFTER PASTING CODE) -->
-                <div
-                    class="h-full flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-gray-700 rounded-lg">
-                    <i data-lucide="calendar-clock" class="w-16 h-16 text-[var(--neon-cyan)] mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Booking System Integration</h3>
-                    <p class="text-gray-400 max-w-md mb-6">
-                        This is where your Square Booking calendar will appear.
-                        <br><br>
-                        <span class="text-xs font-mono bg-black p-2 rounded text-[var(--neon-yellow)]">
-                            Paste your Square Embed Code in index.html line ~285
-                        </span>
-                    </p>
-                    <a href="https://squareup.com/dashboard/" target="_blank"
-                        class="bg-[var(--neon-magenta)] text-black px-6 py-2 font-bold hover:bg-white transition-colors">
-                        Go to Square Dashboard
-                    </a>
-                </div>
-                <!-- [END] PLACEHOLDER CONTENT -->
-
-                <!-- PASTE YOUR SQUARE EMBED CODE HERE -->
-
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Initialize Icons
-        lucide.createIcons();
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+    <!-- SECTION 5: LOCATION & HOURS -->
+    <section id="location" class="py-24 bg-[#050505] relative border-t border-white/5">
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
         });
-
-        // Booking Modal Logic
-        const modal = document.getElementById('booking-modal');
-
-        function openBookingModal() {
-            modal.classList.remove('hidden-modal');
-            modal.classList.add('visible-modal');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        }
-
-        function closeBookingModal() {
-            modal.classList.remove('visible-modal');
-            modal.classList.add('hidden-modal');
-            document.body.style.overflow = 'auto'; // Restore background scrolling
-        }
-
-        // Close on Escape key
-        document.addEventListener('keydown', function (event) {
-            if (event.key === "Escape") {
-                closeBookingModal();
-            }
         });
-    </script>
+        });
+        </script>
 </body>
 
 </html>
