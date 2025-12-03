@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crazy Cube VR Arcade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-cyan: #00FFFF;
+            --neon-magenta: #FF00FF;
+            --neon-yellow: #FFFF00;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Glitch Effect Utility */
+        .glitch-text:hover {
+            text-shadow: 2px 0 var(--neon-magenta), -2px 0 var(--neon-cyan);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-cyan);
+        }
+
+        .gradient-text-cyan {
+            background: linear-gradient(90deg, #fff, var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .gradient-text-magenta {
+            background: linear-gradient(90deg, #fff, var(--neon-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .border-glow-cyan {
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="WechatIMG78.png" alt="Crazy Cube Logo" class="h-12 w-auto object-contain">
+                <span class="brand-font text-2xl font-bold tracking-wider hidden sm:block">CRAZY <span class="text-[var(--neon-cyan)]">CUBE</span></span>
+            </div>
+            <div class="hidden md:flex gap-8 font-bold tracking-widest text-sm uppercase">
+                <a href="#hero" class="hover:text-[var(--neon-cyan)] transition-colors duration-300">XR Arena</a>
+                <a href="#vr-motion" class="hover:text-[var(--neon-magenta)] transition-colors duration-300">Motion VR</a>
+                <a href="#arcade" class="hover:text-[var(--neon-yellow)] transition-colors duration-300">Classic Arcade</a>
+                <button class="bg-white text-black px-6 py-2 hover:bg-[var(--neon-cyan)] hover:text-black transition-all duration-300 font-bold skew-x-[-10deg]">
+                    <span class="skew-x-[10deg] inline-block">BOOK NOW</span>
+                </button>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white hover:text-[var(--neon-cyan)]">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: HERO & XR SHOOTING (Video) -->
+    <section id="hero" class="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden">
+        <!-- Background Video with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-60">
+                <source src="1764608757011029.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-20"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-20">
+            <div class="space-y-6">
+                <div class="inline-block px-4 py-1 border border-[var(--neon-cyan)] text-[var(--neon-cyan)] text-xs font-bold tracking-[0.2em] uppercase mb-2">
+                    Level 1 // Fully Immersive
+                </div>
+                <h1 class="text-6xl md:text-8xl font-black uppercase leading-none brand-font">
+                    Enter The <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--neon-cyan)] to-[var(--neon-magenta)]">Void</span>
+                </h1>
+                <p class="text-xl text-gray-300 max-w-lg leading-relaxed font-light">
+                    Experience the next evolution of gaming. Our free-roam XR arena blends physical reality with digital worlds. Don't just play the game—be the weapon.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <button class="group relative px-8 py-4 bg-[var(--neon-cyan)] text-black font-bold uppercase tracking-wider overflow-hidden">
+                        <span class="relative z-10 flex items-center gap-2">
+                            Watch Trailer <i data-lucide="play-circle" class="w-5 h-5"></i>
+                        </span>
+                        <div class="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                    </button>
+                    <button class="px-8 py-4 border border-white hover:border-[var(--neon-magenta)] hover:text-[var(--neon-magenta)] transition-colors duration-300 font-bold uppercase tracking-wider">
+                        View Missions
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Floating Stats/Info Card (Decorative) -->
+            <div class="hidden lg:block relative">
+                <div class="absolute -inset-1 bg-gradient-to-r from-[var(--neon-cyan)] to-[var(--neon-magenta)] blur opacity-30"></div>
+                <div class="relative bg-black/80 border border-white/10 p-6 backdrop-blur-sm">
+                    <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+                        <span class="text-[var(--neon-yellow)] font-mono text-sm">SYSTEM_READY</span>
+                        <div class="flex gap-1">
+                            <div class="w-2 h-2 bg-[var(--neon-cyan)] rounded-full animate-pulse"></div>
+                            <div class="w-2 h-2 bg-[var(--neon-magenta)] rounded-full"></div>
+                        </div>
+                    </div>
+                    <div class="space-y-4 font-mono text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">HAPTIC FEEDBACK</span>
+                            <span>ENABLED</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-1"><div class="bg-[var(--neon-cyan)] h-1 w-[95%]"></div></div>
+                        
+                        <div class="flex justify-between pt-2">
+                            <span class="text-gray-400">TRACKING PRECISION</span>
+                            <span>SUB-MM</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-1"><div class="bg-[var(--neon-magenta)] h-1 w-[98%]"></div></div>
+
+                        <div class="flex justify-between pt-2">
+                            <span class="text-gray-400">PLAYERS</span>
+                            <span>1 - 4 SQUAD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: VR MOTION SIMULATORS -->
+    <section id="vr-motion" class="py-24 bg-black relative">
+        <!-- Diagonal Divider -->
+        <div class="absolute top-0 left-0 w-full overflow-hidden leading-none transform -translate-y-1/2 z-20">
+             <svg class="relative block w-full h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="fill-black"></path>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-[var(--neon-magenta)] text-sm font-bold tracking-[0.3em] uppercase mb-2">Level 2 // Somatic Experience</h2>
+                    <h3 class="text-5xl md:text-7xl font-bold uppercase brand-font">
+                        Motion <br><span class="text-white">Simulation</span>
+                    </h3>
+                </div>
+                <p class="text-gray-400 max-w-md text-right md:text-left mb-2">
+                    Strap in. Our commercial-grade motion platforms synchronize physical movement with VR visuals for 100% immersion. Feel every turn, drop, and impact.
+                </p>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+                
+                <!-- Large Featured Item -->
+                <div class="lg:col-span-8 group relative overflow-hidden border border-white/10 hover:border-[var(--neon-magenta)] transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-90"></div>
+                    <img src="51-1981545094203625472-landing.jpg" alt="Star Tower VR" class="w-full h-[400px] lg:h-[500px] object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0">
+                    <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <h4 class="text-3xl font-bold mb-2 brand-font">Star Tower</h4>
+                                <p class="text-[var(--neon-magenta)] font-mono text-sm">360° ROTATION / 4D WIND EFFECTS</p>
+                            </div>
+                            <div class="hidden md:block">
+                                <i data-lucide="move-3d" class="w-10 h-10 text-white/50 group-hover:text-[var(--neon-magenta)] transition-colors"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Items Stack -->
+                <div class="lg:col-span-4 grid grid-cols-1 gap-6">
+                    <div class="group relative overflow-hidden border border-white/10 hover:border-[var(--neon-cyan)] transition-all duration-500 h-[240px]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+                        <img src="61-1899263163886325760-introImg.jpg" alt="Racing Simulator" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0">
+                        <div class="absolute bottom-6 left-6 z-20">
+                            <h4 class="text-xl font-bold brand-font">Hyper Racing</h4>
+                            <p class="text-[var(--neon-cyan)] font-mono text-xs">FORCE FEEDBACK WHEEL</p>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden border border-white/10 hover:border-[var(--neon-yellow)] transition-all duration-500 h-[240px]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+                        <img src="20-5fce56a321a84a6d971b171495fe95da-pairImg.jpg" alt="Space Battle" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0">
+                        <div class="absolute bottom-6 left-6 z-20">
+                            <h4 class="text-xl font-bold brand-font">Galaxy Squad</h4>
+                            <p class="text-[var(--neon-yellow)] font-mono text-xs">MULTIPLAYER CO-OP</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: CLASSIC ARCADE -->
+    <section id="arcade" class="py-24 relative overflow-hidden bg-[#0a0a0a]">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#333 1px, transparent 1px); background-size: 20px 20px;"></div>
+        
+        <!-- Game Cover Collage Strip (Faded Background) -->
+        <div class="absolute top-1/2 transform -translate-y-1/2 w-full h-[300px] opacity-10 rotate-[-3deg] scale-110 pointer-events-none">
+            <img src="69468e50b214401481c230151a9e4612.jpg" class="w-full h-full object-cover grayscale" alt="Game Covers">
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <span class="inline-block border border-[var(--neon-yellow)] text-[var(--neon-yellow)] px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-4">Level 3 // RETRO ZONE</span>
+                <h2 class="text-5xl md:text-7xl font-black uppercase brand-font mb-6">
+                    Arcade <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--neon-yellow)] to-orange-500">Legends</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Take a break from the metaverse and test your physical skills. From hoops to hooks, we've got the classics that started it all.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Arcade Card 1 -->
+                <div class="bg-[#111] p-8 border-t-4 border-[var(--neon-yellow)] hover:transform hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[var(--neon-yellow)] group-hover:text-black transition-colors">
+                        <i data-lucide="trophy" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 brand-font">Hoops Fever</h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Compete for the high score on our connected basketball machines. Link up with friends for head-to-head battles.
+                    </p>
+                    <ul class="text-xs font-mono text-gray-500 space-y-2">
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-[var(--neon-yellow)]"></div> MOVING HOOPS</li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-[var(--neon-yellow)]"></div> GLOBAL LEADERBOARD</li>
+                    </ul>
+                </div>
+
+                <!-- Arcade Card 2 -->
+                <div class="bg-[#111] p-8 border-t-4 border-orange-500 hover:transform hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-orange-500 group-hover:text-black transition-colors">
+                        <i data-lucide="swords" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 brand-font">Power Boxing</h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Test your strength. The ultimate stress relief machine with precise force measurement and impact feedback.
+                    </p>
+                    <ul class="text-xs font-mono text-gray-500 space-y-2">
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-orange-500"></div> POWER TRACKING</li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-orange-500"></div> MULTIPLE MODES</li>
+                    </ul>
+                </div>
+
+                <!-- Arcade Card 3 -->
+                <div class="bg-[#111] p-8 border-t-4 border-red-500 hover:transform hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-red-500 group-hover:text-black transition-colors">
+                        <i data-lucide="gamepad-2" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 brand-font">Retrocade</h3>
+                    <p class="text-gray-400 text-sm mb-6">
+                        A curated collection of fighting games and side-scrollers from the golden age of arcades.
+                    </p>
+                    <ul class="text-xs font-mono text-gray-500 space-y-2">
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-red-500"></div> STREET FIGHTER II</li>
+                        <li class="flex items-center gap-2"><div class="w-1 h-1 bg-red-500"></div> TEKKEN</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-10">
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                        <img src="WechatIMG78.png" alt="Logo" class="h-10 w-auto">
+                        <span class="brand-font text-2xl font-bold">CRAZY CUBE</span>
+                    </div>
+                    <p class="text-gray-500 text-sm max-w-xs">
+                        The future of entertainment is here. Located in the heart of the city.
+                    </p>
+                </div>
+
+                <div class="flex gap-6">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--neon-cyan)] hover:text-black transition-colors">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--neon-magenta)] hover:text-black transition-colors">
+                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--neon-yellow)] hover:text-black transition-colors">
+                        <i data-lucide="facebook" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-16 pt-8 border-t border-white/5 text-center text-gray-600 text-xs font-mono">
+                &copy; 2024 CRAZY CUBE VR. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Simple smooth scroll behavior fix for older browsers if needed
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
