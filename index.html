@@ -4,7 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crazy Cube VR Arcade</title>
+    <title>Crazy Cube VR | Best VR Arcade in Birmingham</title>
+
+    <!-- SEO META TAGS -->
+    <meta name="description"
+        content="Experience the UK's first XR shooting game, 50+ immersive VR experiences, and motion simulators at Crazy Cube VR in Birmingham. Perfect for parties and gaming.">
+    <meta name="keywords"
+        content="VR Arcade Birmingham, Virtual Reality, XR Shooting, Things to do in Birmingham, Arcade, Gaming, Party Venue, Motion Simulators">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Crazy Cube VR - The Ultimate Gaming Experience">
+    <meta property="og:image" content="51-1981545094203625472-landing.jpg">
+    <meta property="og:url" content="https://crazycubevr.com">
+    <meta property="og:type" content="website">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AmusementPark",
+      "name": "Crazy Cube VR",
+      "image": "51-1981545094203625472-landing.jpg",
+      "@id": "https://crazycubevr.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "143 Bromsgrove Street",
+        "addressLocality": "Birmingham",
+        "postalCode": "B5 6RG",
+        "addressCountry": "UK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 52.4715,
+        "longitude": -1.8994
+      },
+      "priceRange": "££"
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link
@@ -31,52 +68,6 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        /* Glitch Effect Utility */
-        .glitch-text:hover {
-            text-shadow: 2px 0 var(--neon-magenta), -2px 0 var(--neon-cyan);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #111;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--neon-cyan);
-        }
-
-        .gradient-text-cyan {
-            background: linear-gradient(90deg, #fff, var(--neon-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Modal Transitions */
-        #booking-modal {
-            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-        }
-
-        #booking-modal.hidden-modal {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        #booking-modal.visible-modal {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-
         /* Scroll Animations */
         .reveal {
             opacity: 0;
@@ -89,7 +80,7 @@
             transform: translateY(0);
         }
 
-        /* Infinite Carousel Animation */
+        /* Carousel Animation */
         @keyframes scroll {
             0% {
                 transform: translateX(0);
@@ -107,48 +98,98 @@
         .pause-on-hover:hover .animate-scroll {
             animation-play-state: paused;
         }
+
+        /* Marquee Animation (Right to Left) */
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .animate-marquee {
+            animation: marquee 40s linear infinite;
+        }
+
+        /* Modal States */
+        #booking-modal.hidden-modal,
+        #gameplay-modal.hidden-modal {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        #booking-modal.visible-modal,
+        #gameplay-modal.visible-modal {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transition: opacity 0.3s;
+        }
     </style>
 </head>
 
 <body class="bg-black text-white antialiased pb-20 md:pb-0">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10 flex flex-col">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <img src="WechatIMG78.png" alt="Crazy Cube Logo" class="h-12 w-auto object-contain">
-                <span class="brand-font text-2xl font-bold tracking-wider hidden sm:block">CRAZY <span
+                <img src="WechatIMG78.png" alt="Crazy Cube Logo" class="h-12 w-auto object-contain"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <span class="brand-font text-2xl font-bold tracking-wider sm:block hidden">CRAZY <span
                         class="text-[var(--neon-cyan)]">CUBE</span></span>
+                <span class="brand-font text-2xl font-bold tracking-wider hidden text-[var(--neon-cyan)]">CC VR</span>
             </div>
+
             <div class="hidden md:flex gap-6 font-bold tracking-widest text-xs lg:text-sm uppercase items-center">
-                <a href="#hero" class="hover:text-[var(--neon-cyan)] transition-colors duration-300">XR Arena</a>
-                <a href="#vr-motion" class="hover:text-[var(--neon-magenta)] transition-colors duration-300">Motion
-                    VR</a>
-                <a href="#arcade" class="hover:text-[var(--neon-yellow)] transition-colors duration-300">Classic
-                    Arcade</a>
-                <a href="#bar" class="hover:text-purple-500 transition-colors duration-300">Bar</a>
-                <a href="#parties" class="hover:text-green-500 transition-colors duration-300">Parties</a>
+                <a href="#hero" class="hover:text-[var(--neon-cyan)] transition-colors">XR Arena</a>
+                <a href="#vr-motion" class="hover:text-[var(--neon-magenta)] transition-colors">Motion VR</a>
+                <a href="#arcade" class="hover:text-[var(--neon-yellow)] transition-colors">Classic Arcade</a>
+                <a href="#bar" class="hover:text-purple-500 transition-colors">Bar</a>
+                <a href="#parties" class="hover:text-green-500 transition-colors">Parties</a>
                 <button onclick="openBookingModal()"
-                    class="bg-white text-black px-6 py-2 hover:bg-[var(--neon-cyan)] hover:text-black transition-all duration-300 font-bold skew-x-[-10deg] ml-4">
+                    class="bg-white text-black px-6 py-2 hover:bg-[var(--neon-cyan)] hover:text-black transition-all font-bold skew-x-[-10deg] ml-4">
                     <span class="skew-x-[10deg] inline-block">BOOK NOW</span>
                 </button>
             </div>
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden text-white hover:text-[var(--neon-cyan)]">
+
+            <button onclick="toggleMobileMenu()" class="md:hidden text-white hover:text-[var(--neon-cyan)]">
                 <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
         </div>
+
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-black border-t border-white/10 p-6 flex flex-col gap-4 text-center">
+            <a href="#hero" onclick="toggleMobileMenu()" class="text-white font-bold uppercase">XR Arena</a>
+            <a href="#vr-motion" onclick="toggleMobileMenu()" class="text-white font-bold uppercase">Motion VR</a>
+            <a href="#arcade" onclick="toggleMobileMenu()" class="text-white font-bold uppercase">Classic Arcade</a>
+            <a href="#bar" onclick="toggleMobileMenu()" class="text-white font-bold uppercase">Bar</a>
+            <a href="#parties" onclick="toggleMobileMenu()" class="text-white font-bold uppercase">Parties</a>
+            <button onclick="openBookingModal(); toggleMobileMenu()"
+                class="bg-[var(--neon-cyan)] text-black px-6 py-3 font-bold uppercase w-full">Book Now</button>
+        </div>
+
+        <div
+            class="w-full bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-white text-sm font-bold py-2 overflow-hidden border-t border-b border-white/20 shadow-[0_0_15px_rgba(220,38,38,0.5)]">
+            <div class="animate-marquee whitespace-nowrap inline-block brand-font tracking-widest">
+                🎄 Merry Christmas!! Book Now And Enjoy 10% Off!! 🎁 &nbsp;&nbsp;&nbsp;&nbsp; 🎅 Merry Christmas!! Book
+                Now And Enjoy 10% Off!! 🥂 &nbsp;&nbsp;&nbsp;&nbsp; 🎄 Merry Christmas!! Book Now And Enjoy 10% Off!! 🎁
+            </div>
+        </div>
     </nav>
 
-    <!-- SECTION 1: HERO & XR SHOOTING (Video) -->
+    <!-- SECTION 1: HERO -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden py-20 reveal">
-        <!-- Background Video with Overlay -->
-        <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 z-0 bg-[#111]">
             <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-60">
                 <source src="1764608757011029.mp4" type="video/mp4">
             </video>
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20"></div>
-            <!-- Grid overlay pattern -->
             <div
                 class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-30">
             </div>
@@ -156,91 +197,57 @@
 
         <div class="container mx-auto px-6 relative z-10 mt-10">
             <div class="max-w-4xl mx-auto text-center mb-12">
-                <!-- Badge -->
                 <div
                     class="inline-flex items-center gap-2 border border-[var(--neon-cyan)] bg-black/50 backdrop-blur px-4 py-2 mb-6">
                     <span class="w-2 h-2 bg-[var(--neon-cyan)] rounded-full animate-pulse"></span>
                     <span class="text-[var(--neon-cyan)] text-xs md:text-sm font-bold tracking-[0.2em] uppercase">UK's
                         First XR Experience</span>
                 </div>
-
-                <!-- Main Headline -->
                 <h1
                     class="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.9] brand-font mb-6 drop-shadow-2xl reveal">
-                    Feel The <br>
-                    <span
+                    Feel The <br><span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--neon-cyan)] via-white to-[var(--neon-cyan)]">Heat
                         of Battle</span>
                 </h1>
-
                 <p class="text-lg md:text-2xl text-gray-200 font-light max-w-2xl mx-auto leading-relaxed mb-10 reveal">
-                    This isn't just VR. It's <span class="font-bold text-white">Extended Reality</span>.
-                    Shoot your way through enemies while feeling the <span
-                        class="text-[var(--neon-yellow)]">heat</span>, <span
+                    This isn't just VR. It's <span class="font-bold text-white">Extended Reality</span>. Shoot your way
+                    through enemies while feeling the <span class="text-[var(--neon-yellow)]">heat</span>, <span
                         class="text-[var(--neon-cyan)]">wind</span>, and <span
-                        class="text-[var(--neon-magenta)]">shaking ground</span> beneath your feet.
+                        class="text-[var(--neon-magenta)]">shaking ground</span>.
                 </p>
 
-                <!-- Sensory Features Grid -->
+                <!-- Sensory Grid -->
                 <div
                     class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 border-t border-b border-white/10 py-8 bg-black/30 backdrop-blur-sm reveal">
-                    <div class="flex flex-col items-center gap-2 group">
-                        <div
-                            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[var(--neon-magenta)] group-hover:bg-[var(--neon-magenta)]/10 transition-all">
-                            <i data-lucide="users" class="w-6 h-6 text-white"></i>
-                        </div>
-                        <span
-                            class="text-xs font-bold tracking-widest uppercase text-gray-400 group-hover:text-white">4-Player
-                            Squad</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group">
-                        <div
-                            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-orange-500 group-hover:bg-orange-500/10 transition-all">
-                            <i data-lucide="flame" class="w-6 h-6 text-white"></i>
-                        </div>
-                        <span
-                            class="text-xs font-bold tracking-widest uppercase text-gray-400 group-hover:text-white">Physical
-                            Heat</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group">
-                        <div
-                            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[var(--neon-cyan)] group-hover:bg-[var(--neon-cyan)]/10 transition-all">
-                            <i data-lucide="wind" class="w-6 h-6 text-white"></i>
-                        </div>
-                        <span
-                            class="text-xs font-bold tracking-widest uppercase text-gray-400 group-hover:text-white">Real
-                            Wind</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 group">
-                        <div
-                            class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[var(--neon-yellow)] group-hover:bg-[var(--neon-yellow)]/10 transition-all">
-                            <i data-lucide="activity" class="w-6 h-6 text-white"></i>
-                        </div>
-                        <span
-                            class="text-xs font-bold tracking-widest uppercase text-gray-400 group-hover:text-white">Shaking
-                            Floor</span>
-                    </div>
+                    <div class="flex flex-col items-center gap-2"><i data-lucide="users"
+                            class="w-6 h-6 text-white"></i><span
+                            class="text-xs font-bold uppercase text-gray-400">4-Player Squad</span></div>
+                    <div class="flex flex-col items-center gap-2"><i data-lucide="flame"
+                            class="w-6 h-6 text-white"></i><span
+                            class="text-xs font-bold uppercase text-gray-400">Physical Heat</span></div>
+                    <div class="flex flex-col items-center gap-2"><i data-lucide="wind"
+                            class="w-6 h-6 text-white"></i><span class="text-xs font-bold uppercase text-gray-400">Real
+                            Wind</span></div>
+                    <div class="flex flex-col items-center gap-2"><i data-lucide="activity"
+                            class="w-6 h-6 text-white"></i><span
+                            class="text-xs font-bold uppercase text-gray-400">Shaking Floor</span></div>
                 </div>
 
-                <!-- CTAs -->
                 <div class="flex flex-col sm:flex-row justify-center gap-4 reveal">
                     <button onclick="openBookingModal()"
-                        class="bg-[var(--neon-cyan)] text-black px-8 py-4 font-bold uppercase tracking-wider hover:bg-white transition-colors duration-300 skew-x-[-10deg]">
-                        <span class="skew-x-[10deg] inline-block">Book Your Mission</span>
-                    </button>
-                    <button
-                        class="border border-white text-white px-8 py-4 font-bold uppercase tracking-wider hover:bg-[var(--neon-magenta)] hover:border-[var(--neon-magenta)] transition-all duration-300 skew-x-[-10deg]">
-                        <span class="skew-x-[10deg] inline-block flex items-center gap-2">Watch Gameplay <i
-                                data-lucide="play" class="w-4 h-4 fill-current"></i></span>
-                    </button>
+                        class="bg-[var(--neon-cyan)] text-black px-8 py-4 font-bold uppercase hover:bg-white transition-colors skew-x-[-10deg]"><span
+                            class="skew-x-[10deg] inline-block">Book Mission</span></button>
+                    <button onclick="openGameplayModal()"
+                        class="border border-white text-white px-8 py-4 font-bold uppercase hover:bg-[var(--neon-magenta)] hover:border-[var(--neon-magenta)] transition-colors skew-x-[-10deg]"><span
+                            class="skew-x-[10deg] inline-block flex items-center gap-2">Watch Gameplay <i
+                                data-lucide="play" class="w-4 h-4 fill-current"></i></span></button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 2: VR MOTION SIMULATORS -->
+    <!-- SECTION 2: MOTION VR (BENTO) -->
     <section id="vr-motion" class="py-24 bg-black relative">
-        <!-- Diagonal Divider -->
         <div class="absolute top-0 left-0 w-full overflow-hidden leading-none transform -translate-y-1/2 z-20">
             <svg class="relative block w-full h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -249,456 +256,371 @@
         </div>
 
         <div class="container mx-auto px-6 reveal">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-10 border-b border-white/5 pb-8">
                 <div>
-                    <h2 class="text-[var(--neon-magenta)] text-sm font-bold tracking-[0.3em] uppercase mb-2">Level 2 //
-                        Somatic Experience</h2>
-                    <h3 class="text-5xl md:text-7xl font-bold uppercase brand-font">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-12 h-1 bg-[var(--neon-magenta)] shadow-[0_0_10px_var(--neon-magenta)]"></div>
+                        <h2 class="text-[var(--neon-magenta)] text-sm font-bold tracking-[0.3em] uppercase">Level 2 //
+                            Somatic Experience</h2>
+                    </div>
+                    <h3 class="text-5xl md:text-7xl font-black uppercase brand-font leading-none">
                         Motion <br><span class="text-white">Simulation</span>
                     </h3>
                 </div>
-                <p class="text-gray-400 max-w-md text-right md:text-left mb-2">
+                <p class="text-gray-400 max-w-md text-lg leading-relaxed md:text-right">
                     Strap in. Our commercial-grade motion platforms synchronize physical movement with VR visuals for
-                    100% immersion. Feel every turn, drop, and impact.
+                    <span class="text-[var(--neon-magenta)] font-bold">100% immersion</span>. Feel every turn, drop, and
+                    impact.
                 </p>
             </div>
 
-            <!-- Grid Layout -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
-
-                <!-- Large Featured Item -->
-                <div
-                    class="lg:col-span-8 group relative overflow-hidden border border-white/10 hover:border-[var(--neon-magenta)] transition-all duration-500 reveal">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-90">
+            <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[600px]">
+                <!-- Star Tower (Large) -->
+                <div class="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-xl bg-[#111]">
+                    <img src="51-1981545094203625472-landing.jpg" alt="VR Star Tower"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90">
                     </div>
-                    <img src="51-1981545094203625472-landing.jpg" alt="Star Tower VR"
-                        class="w-full h-[400px] lg:h-[500px] object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0">
-                    <div class="absolute bottom-0 left-0 p-8 z-20 w-full">
-                        <div class="flex justify-between items-end">
-                            <div>
-                                <h4 class="text-3xl font-bold mb-2 brand-font">Star Tower</h4>
-                                <p class="text-[var(--neon-magenta)] font-mono text-sm">360° ROTATION / 4D WIND EFFECTS
-                                </p>
-                            </div>
-                            <div class="hidden md:block">
-                                <i data-lucide="move-3d"
-                                    class="w-10 h-10 text-white/50 group-hover:text-[var(--neon-magenta)] transition-colors"></i>
-                            </div>
-                        </div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <h4 class="text-3xl font-bold brand-font text-white">VR Tower</h4>
+                        <p class="text-[var(--neon-magenta)] text-sm tracking-widest uppercase">Extreme Heights / 360°
+                            Rotation</p>
                     </div>
                 </div>
-
-                <!-- Side Items Stack -->
-                <div class="lg:col-span-4 grid grid-cols-1 gap-6">
-                    <div
-                        class="group relative overflow-hidden border border-white/10 hover:border-[var(--neon-cyan)] transition-all duration-500 h-[240px] reveal">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10">
-                        </div>
-                        <img src="61-1899263163886325760-introImg.jpg" alt="Racing Simulator"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0">
-                        <div class="absolute bottom-6 left-6 z-20">
-                            <h4 class="text-xl font-bold brand-font">Hyper Racing</h4>
-                            <p class="text-[var(--neon-cyan)] font-mono text-xs">FORCE FEEDBACK WHEEL</p>
-                        </div>
+                <!-- UFO -->
+                <div class="md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-xl bg-[#111]">
+                    <img src="20-5fce56a321a84a6d971b171495fe95da-pairImg.jpg" alt="VR UFO"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80">
                     </div>
-                    <div
-                        class="group relative overflow-hidden border border-white/10 hover:border-[var(--neon-yellow)] transition-all duration-500 h-[240px] reveal">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10">
-                        </div>
-                        <img src="20-5fce56a321a84a6d971b171495fe95da-pairImg.jpg" alt="Space Battle"
-                            class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0">
-                        <div class="absolute bottom-6 left-6 z-20">
-                            <h4 class="text-xl font-bold brand-font">Galaxy Squad</h4>
-                            <p class="text-[var(--neon-yellow)] font-mono text-xs">MULTIPLAYER CO-OP</p>
-                        </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h4 class="text-xl font-bold brand-font text-white">VR UFO</h4>
+                        <p class="text-[var(--neon-cyan)] text-xs tracking-widest uppercase">Space Battle</p>
                     </div>
                 </div>
-
-            </div>
-
-            <!-- 50+ Experiences Block -->
-            <div class="mt-16 py-8 border-t border-b border-white/10 bg-black/40 backdrop-blur-sm text-center reveal">
-                <p class="text-2xl md:text-4xl font-bold uppercase brand-font tracking-wider">
-                    <span class="text-[var(--neon-magenta)] text-5xl md:text-6xl">50+</span>
-                    <span class="text-white">Unique Experiences</span>
-                </p>
-                <p class="text-[var(--neon-cyan)] font-bold tracking-[0.3em] text-sm mt-2 uppercase">
-                    For You To Discover!
-                </p>
+                <!-- Paraglider -->
+                <div class="md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-xl bg-[#111]">
+                    <img src="1743129124738966.jpg" alt="VR Paraglider"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80">
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h4 class="text-xl font-bold brand-font text-white">VR Paraglider</h4>
+                        <p class="text-green-400 text-xs tracking-widest uppercase">Aerial Tour</p>
+                    </div>
+                </div>
+                <!-- Hero -->
+                <div class="md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-xl bg-[#111]">
+                    <img src="64-1921858182845317120-introImg.jpg" alt="VR Hero"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80">
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h4 class="text-xl font-bold brand-font text-white">VR Hero</h4>
+                        <p class="text-[var(--neon-yellow)] text-xs tracking-widest uppercase">Action Sim</p>
+                    </div>
+                </div>
+                <!-- Racing -->
+                <div class="md:col-span-1 md:row-span-1 group relative overflow-hidden rounded-xl bg-[#111]">
+                    <img src="61-1899263163886325760-introImg.jpg" alt="3D Racing"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80">
+                    </div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h4 class="text-xl font-bold brand-font text-white">3D Racing</h4>
+                        <p class="text-blue-500 text-xs tracking-widest uppercase">Force Feedback</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: CLASSIC ARCADE (UPDATED CAROUSEL) -->
+    <!-- 50+ BANNER -->
+    <section class="relative py-24 border-t border-b border-white/10 text-center reveal overflow-hidden group">
+        <div class="absolute inset-0 z-0 bg-[#111]">
+            <img src="Gemini_Generated_Image_6nfbfk6nfbfk6nfb.png"
+                class="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-all duration-1000 transform group-hover:scale-105 filter grayscale group-hover:grayscale-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black"></div>
+        </div>
+        <div class="relative z-10 container mx-auto px-6">
+            <p class="text-4xl md:text-6xl font-black uppercase brand-font tracking-wider drop-shadow-2xl">
+                <span class="text-[var(--neon-magenta)] text-7xl md:text-8xl block md:inline mb-4 md:mb-0">50+</span>
+                <span class="text-white">Unique Experiences</span>
+            </p>
+            <p class="text-[var(--neon-cyan)] font-bold tracking-[0.5em] text-sm md:text-lg mt-6 uppercase">For You To
+                Discover!</p>
+            <div
+                class="w-32 h-1 bg-[var(--neon-yellow)] mx-auto mt-10 rounded-full shadow-[0_0_15px_var(--neon-yellow)]">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: CLASSIC ARCADE -->
     <section id="arcade" class="py-24 relative overflow-hidden bg-[#0a0a0a]">
-        <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-10"
             style="background-image: radial-gradient(#333 1px, transparent 1px); background-size: 20px 20px;"></div>
-
-        <!-- Game Cover Collage Strip (Faded Background) -->
-        <div
-            class="absolute top-1/2 transform -translate-y-1/2 w-full h-[300px] opacity-10 rotate-[-3deg] scale-110 pointer-events-none">
-            <img src="69468e50b214401481c230151a9e4612.jpg" class="w-full h-full object-cover grayscale"
-                alt="Game Covers">
-        </div>
-
         <div class="container mx-auto px-6 relative z-10 reveal">
             <div class="text-center mb-16">
                 <span
                     class="inline-block border border-[var(--neon-yellow)] text-[var(--neon-yellow)] px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-4">Level
                     3 // RETRO ZONE</span>
-                <h2 class="text-5xl md:text-7xl font-black uppercase brand-font mb-6">
-                    Arcade <span
+                <h2 class="text-5xl md:text-7xl font-black uppercase brand-font mb-6">Arcade <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--neon-yellow)] to-orange-500">Legends</span>
                 </h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Take a break from the metaverse and test your physical skills. From hoops to hooks, we've got the
-                    classics that started it all.
-                </p>
             </div>
 
-            <!-- Rotating Card Carousel -->
             <div class="relative w-full overflow-hidden pause-on-hover">
                 <div class="flex animate-scroll w-max gap-8">
-
-                    <!-- ORIGINAL SET (7 Items) -->
+                    <!-- Cards (Original Set) -->
                     <!-- 1. Basketball -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-[var(--neon-yellow)] flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[var(--neon-yellow)] group-hover:text-black transition-colors">
-                                <i data-lucide="trophy" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Hoops Fever</h3>
-                            <p class="text-gray-400 text-sm">Classic arcade basketball with moving hoops and multiplayer
-                                link-up.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-[var(--neon-yellow)] relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3346.heic" alt="Hoops Fever"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white drop-shadow-md">Hoops Fever</h3>
+                            <p class="text-[var(--neon-yellow)] text-sm font-bold">Classic Moving Hoops</p>
                         </div>
                     </div>
-
                     <!-- 2. Air Hockey -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-[var(--neon-cyan)] flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[var(--neon-cyan)] group-hover:text-black transition-colors">
-                                <i data-lucide="disc" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Neon Puck</h3>
-                            <p class="text-gray-400 text-sm">High-speed air hockey tables with UV lighting effects.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-[var(--neon-cyan)] relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3349.heic" alt="Air Hockey"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Neon Puck</h3>
+                            <p class="text-[var(--neon-cyan)] text-sm font-bold">High-Speed Air Hockey</p>
                         </div>
                     </div>
-
                     <!-- 3. Bike -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-purple-500 flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-500 group-hover:text-black transition-colors">
-                                <i data-lucide="bike" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Moto GP</h3>
-                            <p class="text-gray-400 text-sm">Full-scale superbike simulators. Lean into the curves.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-purple-500 relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3350.heic" alt="Moto GP"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Moto GP</h3>
+                            <p class="text-purple-500 text-sm font-bold">Superbike Simulator</p>
                         </div>
                     </div>
-
                     <!-- 4. Boxing -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-red-500 flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-red-500 group-hover:text-black transition-colors">
-                                <i data-lucide="swords" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Power Boxing</h3>
-                            <p class="text-gray-400 text-sm">Test your strength. Precision sensors measure your knockout
-                                power.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-red-500 relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3351.heic" alt="Power Boxing"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Power Boxing</h3>
+                            <p class="text-red-500 text-sm font-bold">Test Your Strength</p>
                         </div>
                     </div>
-
                     <!-- 5. Karaoke -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-[var(--neon-magenta)] flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[var(--neon-magenta)] group-hover:text-black transition-colors">
-                                <i data-lucide="mic" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Cyber Stage</h3>
-                            <p class="text-gray-400 text-sm">Soundproof karaoke booths with the latest global hits.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-[var(--neon-magenta)] relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3356.heic" alt="Karaoke"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Cyber Stage</h3>
+                            <p class="text-[var(--neon-magenta)] text-sm font-bold">Soundproof Karaoke</p>
                         </div>
                     </div>
-
-                    <!-- 6. Capsule Machine -->
+                    <!-- 6. Capsule -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-pink-400 flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-pink-400 group-hover:text-black transition-colors">
-                                <i data-lucide="gift" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Gacha Pod</h3>
-                            <p class="text-gray-400 text-sm">Win exclusive anime figures and collectibles in our capsule
-                                zone.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-pink-400 relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3353.heic" alt="Gacha Pod"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Gacha Pod</h3>
+                            <p class="text-pink-400 text-sm font-bold">Win Exclusive Prizes</p>
                         </div>
                     </div>
-
                     <!-- 7. Shooting -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-orange-500 flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-orange-500 group-hover:text-black transition-colors">
-                                <i data-lucide="crosshair" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Time Crisis</h3>
-                            <p class="text-gray-400 text-sm">Classic light-gun action. Take cover and reload.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-orange-500 relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3358.heic" alt="Time Crisis"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Time Crisis</h3>
+                            <p class="text-orange-500 text-sm font-bold">Light-Gun Action</p>
                         </div>
                     </div>
 
-                    <!-- DUPLICATE SET (For Infinite Scroll) -->
-                    <!-- 1. Basketball -->
+                    <!-- DUPLICATE SET FOR SCROLL -->
+                    <!-- Basketball Duplicate -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-[var(--neon-yellow)] flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[var(--neon-yellow)] group-hover:text-black transition-colors">
-                                <i data-lucide="trophy" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Hoops Fever</h3>
-                            <p class="text-gray-400 text-sm">Classic arcade basketball with moving hoops and multiplayer
-                                link-up.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-[var(--neon-yellow)] relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3346.heic" alt="Hoops Fever"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white drop-shadow-md">Hoops Fever</h3>
+                            <p class="text-[var(--neon-yellow)] text-sm font-bold">Classic Moving Hoops</p>
                         </div>
                     </div>
-
-                    <!-- 2. Air Hockey -->
+                    <!-- Air Hockey Duplicate -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-[var(--neon-cyan)] flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[var(--neon-cyan)] group-hover:text-black transition-colors">
-                                <i data-lucide="disc" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Neon Puck</h3>
-                            <p class="text-gray-400 text-sm">High-speed air hockey tables with UV lighting effects.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-[var(--neon-cyan)] relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3349.heic" alt="Air Hockey"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Neon Puck</h3>
+                            <p class="text-[var(--neon-cyan)] text-sm font-bold">High-Speed Air Hockey</p>
                         </div>
                     </div>
-
-                    <!-- 3. Bike -->
+                    <!-- Bike Duplicate -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-purple-500 flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-500 group-hover:text-black transition-colors">
-                                <i data-lucide="bike" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Moto GP</h3>
-                            <p class="text-gray-400 text-sm">Full-scale superbike simulators. Lean into the curves.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-purple-500 relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3350.heic" alt="Moto GP"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Moto GP</h3>
+                            <p class="text-purple-500 text-sm font-bold">Superbike Simulator</p>
                         </div>
                     </div>
-
-                    <!-- 4. Boxing -->
+                    <!-- Boxing Duplicate -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-red-500 flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-red-500 group-hover:text-black transition-colors">
-                                <i data-lucide="swords" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Power Boxing</h3>
-                            <p class="text-gray-400 text-sm">Test your strength. Precision sensors measure your knockout
-                                power.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-red-500 relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3351.heic" alt="Power Boxing"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Power Boxing</h3>
+                            <p class="text-red-500 text-sm font-bold">Test Your Strength</p>
                         </div>
                     </div>
-
-                    <!-- 5. Karaoke -->
+                    <!-- Karaoke Duplicate -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-[var(--neon-magenta)] flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-[var(--neon-magenta)] group-hover:text-black transition-colors">
-                                <i data-lucide="mic" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Cyber Stage</h3>
-                            <p class="text-gray-400 text-sm">Soundproof karaoke booths with the latest global hits.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-[var(--neon-magenta)] relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3356.heic" alt="Karaoke"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Cyber Stage</h3>
+                            <p class="text-[var(--neon-magenta)] text-sm font-bold">Soundproof Karaoke</p>
                         </div>
                     </div>
-
-                    <!-- 6. Capsule Machine -->
+                    <!-- Capsule Duplicate -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-pink-400 flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-pink-400 group-hover:text-black transition-colors">
-                                <i data-lucide="gift" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Gacha Pod</h3>
-                            <p class="text-gray-400 text-sm">Win exclusive anime figures and collectibles in our capsule
-                                zone.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-pink-400 relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3353.heic" alt="Gacha Pod"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Gacha Pod</h3>
+                            <p class="text-pink-400 text-sm font-bold">Win Exclusive Prizes</p>
                         </div>
                     </div>
-
-                    <!-- 7. Shooting -->
+                    <!-- Shooting Duplicate -->
                     <div
-                        class="w-[300px] bg-[#111] p-8 border-t-4 border-orange-500 flex flex-col justify-between shrink-0 hover:bg-[#1a1a1a] transition-colors group">
-                        <div class="mb-4">
-                            <div
-                                class="bg-black/50 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-orange-500 group-hover:text-black transition-colors">
-                                <i data-lucide="crosshair" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="text-2xl font-bold mb-2 brand-font">Time Crisis</h3>
-                            <p class="text-gray-400 text-sm">Classic light-gun action. Take cover and reload.</p>
+                        class="w-[300px] h-[400px] border-t-4 border-orange-500 relative shrink-0 group overflow-hidden rounded-xl bg-[#111]">
+                        <img src="IMG_3358.heic" alt="Time Crisis"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 w-full relative z-10">
+                            <h3 class="text-2xl font-bold mb-1 brand-font text-white">Time Crisis</h3>
+                            <p class="text-orange-500 text-sm font-bold">Light-Gun Action</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4: THE BAR -->
-    <section id="bar" class="py-24 bg-black relative border-t border-white/5">
-        <div class="container mx-auto px-6 reveal">
+    <!-- SECTION 4: BAR -->
+    <section id="bar" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="WechatIMG79.jpeg" alt="Bar Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/60"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 reveal">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Bar Image -->
-                <div class="relative group">
-                    <div
-                        class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
-                    </div>
-                    <div class="relative rounded-lg overflow-hidden border border-white/10">
-                        <img src="IMG_3339.jpg" alt="Crazy Cube Bar"
-                            class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60">
-                        </div>
-                        <div class="absolute bottom-6 left-6">
-                            <h3 class="text-3xl font-bold brand-font text-white">REFUEL <span
-                                    class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">STATION</span>
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Menu -->
                 <div class="space-y-8">
-                    <div class="text-center lg:text-left">
-                        <span
-                            class="inline-block border border-purple-500 text-purple-500 px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-4">Level
-                            4 // CHILL ZONE</span>
-                        <h2 class="text-4xl md:text-5xl font-black uppercase brand-font mb-4">
-                            The <span class="text-white">Bar</span>
-                        </h2>
-                        <p class="text-gray-400">
-                            Recharge after your mission. Serving craft cocktails, mocktails, and energy boosts for the
-                            next round.
-                        </p>
+                    <span
+                        class="inline-block border border-purple-500 text-purple-500 px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-4">Level
+                        4 // CHILL ZONE</span>
+                    <h2 class="text-4xl md:text-5xl font-black uppercase brand-font mb-4">The <span
+                            class="text-white">Bar</span></h2>
+                    <p class="text-gray-300 text-lg">Mission complete? Head to our neon-lit refueling station. We serve
+                        a range of craft cocktails, refreshing mocktails, and energy boosts.</p>
+                </div>
+                <div
+                    class="bg-black/60 backdrop-blur-md border border-white/20 p-8 rounded-xl relative overflow-hidden shadow-2xl">
+                    <div
+                        class="absolute top-0 left-0 w-full h-1 bg-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.5)] animate-[scan_3s_linear_infinite]">
                     </div>
-
-                    <!-- Placeholder Menu Grid -->
-                    <div class="bg-[#111] border border-white/10 p-6 rounded-lg relative overflow-hidden">
-                        <!-- Decorative Scanline -->
-                        <div
-                            class="absolute top-0 left-0 w-full h-1 bg-purple-500/50 shadow-[0_0_15px_rgba(168,85,247,0.5)] animate-[scan_3s_linear_infinite]">
+                    <h4 class="text-xl font-bold text-center mb-8 border-b border-white/10 pb-4 tracking-widest">
+                        HOLOGRAPHIC MENU</h4>
+                    <div class="space-y-8">
+                        <div>
+                            <h5
+                                class="text-purple-400 font-bold text-xs tracking-[0.2em] mb-4 flex items-center gap-2 uppercase">
+                                <i data-lucide="martini" class="w-4 h-4"></i> Signature Elixirs
+                            </h5>
+                            <ul class="space-y-4 text-sm">
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span
+                                        class="text-gray-200">Neon Night (Vodka, Blue Curacao, Lemon)</span><span
+                                        class="text-purple-400 font-mono font-bold">£9.50</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span
+                                        class="text-gray-200">System Failure (Rum, Overproof, Lime)</span><span
+                                        class="text-purple-400 font-mono font-bold">£10.00</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span
+                                        class="text-gray-200">Pixel Perfect (Gin, Elderflower, Mint)</span><span
+                                        class="text-purple-400 font-mono font-bold">£9.00</span></li>
+                            </ul>
                         </div>
-
-                        <h4 class="text-xl font-bold text-center mb-6 border-b border-white/10 pb-2">HOLOGRAPHIC MENU
-                        </h4>
-
-                        <div class="space-y-6">
-                            <!-- Category: Signature Cocktails -->
-                            <div>
-                                <h5
-                                    class="text-purple-400 font-bold text-sm tracking-widest mb-3 flex items-center gap-2">
-                                    <i data-lucide="martini" class="w-4 h-4"></i> SIGNATURE ELIXIRS
-                                </h5>
-                                <ul class="space-y-3 text-sm">
-                                    <li class="flex justify-between items-center group cursor-pointer">
-                                        <span class="text-gray-300 group-hover:text-white transition-colors">Neon Night
-                                            (Vodka, Blue Curacao, Lemon)</span>
-                                        <span class="text-purple-400 font-mono">£9.50</span>
-                                    </li>
-                                    <li class="flex justify-between items-center group cursor-pointer">
-                                        <span class="text-gray-300 group-hover:text-white transition-colors">System
-                                            Failure (Rum, Overproof, Lime)</span>
-                                        <span class="text-purple-400 font-mono">£10.00</span>
-                                    </li>
-                                    <li class="flex justify-between items-center group cursor-pointer">
-                                        <span class="text-gray-300 group-hover:text-white transition-colors">Pixel
-                                            Perfect (Gin, Elderflower, Mint)</span>
-                                        <span class="text-purple-400 font-mono">£9.00</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <!-- Category: Mocktails & Energy -->
-                            <div>
-                                <h5
-                                    class="text-[var(--neon-cyan)] font-bold text-sm tracking-widest mb-3 flex items-center gap-2">
-                                    <i data-lucide="zap" class="w-4 h-4"></i> ZERO GRAVITY (NO ALC)
-                                </h5>
-                                <ul class="space-y-3 text-sm">
-                                    <li class="flex justify-between items-center group cursor-pointer">
-                                        <span class="text-gray-300 group-hover:text-white transition-colors">Cyber
-                                            Slushie (Raspberry & Lime)</span>
-                                        <span class="text-[var(--neon-cyan)] font-mono">£5.50</span>
-                                    </li>
-                                    <li class="flex justify-between items-center group cursor-pointer">
-                                        <span class="text-gray-300 group-hover:text-white transition-colors">Mana Potion
-                                            (Energy Drink Mix)</span>
-                                        <span class="text-[var(--neon-cyan)] font-mono">£4.50</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <!-- Category: Snacks -->
-                            <div>
-                                <h5
-                                    class="text-[var(--neon-yellow)] font-bold text-sm tracking-widest mb-3 flex items-center gap-2">
-                                    <i data-lucide="utensils" class="w-4 h-4"></i> LOOT BOXES (FOOD)
-                                </h5>
-                                <ul class="space-y-3 text-sm">
-                                    <li class="flex justify-between items-center group cursor-pointer">
-                                        <span class="text-gray-300 group-hover:text-white transition-colors">Loaded
-                                            Nachos v2.0</span>
-                                        <span class="text-[var(--neon-yellow)] font-mono">£7.00</span>
-                                    </li>
-                                    <li class="flex justify-between items-center group cursor-pointer">
-                                        <span class="text-gray-300 group-hover:text-white transition-colors">Hot Dog &
-                                            Fries Combo</span>
-                                        <span class="text-[var(--neon-yellow)] font-mono">£8.50</span>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div>
+                            <h5
+                                class="text-[var(--neon-cyan)] font-bold text-xs tracking-[0.2em] mb-4 flex items-center gap-2 uppercase">
+                                <i data-lucide="zap" class="w-4 h-4"></i> Zero Gravity (No Alc)
+                            </h5>
+                            <ul class="space-y-4 text-sm">
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span
+                                        class="text-gray-200">Cyber Slushie (Raspberry & Lime)</span><span
+                                        class="text-[var(--neon-cyan)] font-mono font-bold">£5.50</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span
+                                        class="text-gray-200">Mana Potion (Energy Drink Mix)</span><span
+                                        class="text-[var(--neon-cyan)] font-mono font-bold">£4.50</span></li>
+                            </ul>
                         </div>
-
-                        <div class="mt-6 text-center">
-                            <button
-                                class="text-xs text-gray-500 border border-white/10 px-4 py-2 hover:bg-white hover:text-black transition-colors uppercase tracking-widest">
-                                View Full Menu PDF
-                            </button>
+                        <div>
+                            <h5
+                                class="text-[var(--neon-yellow)] font-bold text-xs tracking-[0.2em] mb-4 flex items-center gap-2 uppercase">
+                                <i data-lucide="utensils" class="w-4 h-4"></i> Loot Boxes (Food)
+                            </h5>
+                            <ul class="space-y-4 text-sm">
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span
+                                        class="text-gray-200">Loaded Nachos v2.0</span><span
+                                        class="text-[var(--neon-yellow)] font-mono font-bold">£7.00</span></li>
+                                <li class="flex justify-between border-b border-white/5 pb-2"><span
+                                        class="text-gray-200">Hot Dog & Fries Combo</span><span
+                                        class="text-[var(--neon-yellow)] font-mono font-bold">£8.50</span></li>
+                            </ul>
                         </div>
                     </div>
+                    <div class="mt-8 text-center"><button
+                            class="text-xs font-bold text-white bg-white/10 px-6 py-3 rounded uppercase border border-white/10 hover:bg-white hover:text-black transition-colors">View
+                            Full Menu</button></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: PRICING (NEW) -->
+    <!-- PRICING -->
     <section id="pricing" class="py-24 bg-[#080808] relative border-t border-white/5">
         <div class="container mx-auto px-6 reveal">
             <div class="text-center mb-16">
-                <span
-                    class="inline-block border border-[var(--neon-cyan)] text-[var(--neon-cyan)] px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-4">DEPLOYMENT
-                    OPTIONS</span>
                 <h2 class="text-4xl md:text-5xl font-black uppercase brand-font mb-4">Choose Your <span
                         class="text-white">Mission</span></h2>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- ROOKIE -->
-                <div
-                    class="bg-[#111] p-8 border border-white/10 hover:border-[var(--neon-cyan)] transition-colors duration-300 flex flex-col">
+                <div class="bg-[#111] p-8 border border-white/10 flex flex-col">
                     <h3 class="text-2xl font-bold brand-font mb-2">SOLO PILOT</h3>
                     <div class="text-4xl font-bold mb-6 text-[var(--neon-cyan)]">£25 <span
                             class="text-sm text-gray-400 font-normal">/ session</span></div>
@@ -711,15 +633,13 @@
                             Tracking</li>
                     </ul>
                     <button onclick="openBookingModal()"
-                        class="w-full py-3 border border-[var(--neon-cyan)] text-[var(--neon-cyan)] font-bold uppercase tracking-wider hover:bg-[var(--neon-cyan)] hover:text-black transition-colors">Book
+                        class="w-full py-3 border border-[var(--neon-cyan)] text-[var(--neon-cyan)] font-bold uppercase hover:bg-[var(--neon-cyan)] hover:text-black">Book
                         Solo</button>
                 </div>
-
-                <!-- SQUAD (Highlighted) -->
                 <div
-                    class="bg-[#111] p-8 border-2 border-[var(--neon-magenta)] relative transform md:-translate-y-4 flex flex-col">
+                    class="bg-[#111] p-8 border-2 border-[var(--neon-magenta)] relative flex flex-col transform md:-translate-y-4">
                     <div
-                        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--neon-magenta)] text-black px-4 py-1 text-xs font-bold uppercase tracking-wider">
+                        class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--neon-magenta)] text-black px-4 py-1 text-xs font-bold uppercase">
                         Most Popular</div>
                     <h3 class="text-2xl font-bold brand-font mb-2 text-white">SQUAD PACK</h3>
                     <div class="text-4xl font-bold mb-6 text-[var(--neon-magenta)]">£80 <span
@@ -735,13 +655,10 @@
                             Private Booth</li>
                     </ul>
                     <button onclick="openBookingModal()"
-                        class="w-full py-3 bg-[var(--neon-magenta)] text-black font-bold uppercase tracking-wider hover:bg-white transition-colors">Book
+                        class="w-full py-3 bg-[var(--neon-magenta)] text-black font-bold uppercase hover:bg-white">Book
                         Squad</button>
                 </div>
-
-                <!-- ELITE -->
-                <div
-                    class="bg-[#111] p-8 border border-white/10 hover:border-[var(--neon-yellow)] transition-colors duration-300 flex flex-col">
+                <div class="bg-[#111] p-8 border border-white/10 flex flex-col">
                     <h3 class="text-2xl font-bold brand-font mb-2">VIP PASS</h3>
                     <div class="text-4xl font-bold mb-6 text-[var(--neon-yellow)]">£40 <span
                             class="text-sm text-gray-400 font-normal">/ session</span></div>
@@ -754,20 +671,19 @@
                             Priority Boarding</li>
                     </ul>
                     <button onclick="openBookingModal()"
-                        class="w-full py-3 border border-[var(--neon-yellow)] text-[var(--neon-yellow)] font-bold uppercase tracking-wider hover:bg-[var(--neon-yellow)] hover:text-black transition-colors">Get
+                        class="w-full py-3 border border-[var(--neon-yellow)] text-[var(--neon-yellow)] font-bold uppercase hover:bg-[var(--neon-yellow)] hover:text-black">Get
                         VIP</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 6: PARTIES (NEW) -->
+    <!-- SECTION 6: PARTIES (NEW - RESTORED) -->
     <section id="parties" class="py-24 bg-black relative border-t border-white/5 overflow-hidden">
         <div
-            class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1514525253440-b393452e8d26?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-20">
+            class="absolute inset-0 bg-[linear-gradient(45deg,rgba(20,20,20,1)_25%,transparent_25%,transparent_75%,rgba(20,20,20,1)_75%,rgba(20,20,20,1)),linear-gradient(45deg,rgba(20,20,20,1)_25%,transparent_25%,transparent_75%,rgba(20,20,20,1)_75%,rgba(20,20,20,1))] bg-[length:40px_40px] opacity-20">
         </div>
         <div class="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent"></div>
-
         <div class="container mx-auto px-6 relative z-10 reveal">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2">
@@ -803,19 +719,36 @@
                 </div>
                 <div class="lg:w-1/2 grid grid-cols-2 gap-4">
                     <div class="space-y-4 transform translate-y-8">
-                        <img src="https://images.unsplash.com/photo-1592478411213-61535fdd280c?auto=format&fit=crop&q=80"
-                            alt="Party"
-                            class="rounded border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
-                        <img src="https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?auto=format&fit=crop&q=80"
-                            alt="VR Fun"
-                            class="rounded border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+                        <div
+                            class="h-48 rounded border border-white/10 bg-[#111] flex items-center justify-center group hover:border-green-500 transition-colors">
+                            <div class="text-center">
+                                <i data-lucide="cake"
+                                    class="w-12 h-12 text-green-500 mx-auto mb-2 opacity-80 group-hover:scale-110 transition-transform"></i>
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Private
+                                    Events</span>
+                            </div>
+                        </div>
+                        <div
+                            class="h-48 rounded border border-white/10 bg-[#111] flex items-center justify-center group hover:border-blue-500 transition-colors">
+                            <div class="text-center">
+                                <i data-lucide="gamepad-2"
+                                    class="w-12 h-12 text-blue-500 mx-auto mb-2 opacity-80 group-hover:scale-110 transition-transform"></i>
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Team
+                                    Gaming</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="space-y-4">
-                        <img src="https://images.unsplash.com/photo-1622979135228-564ad3b48231?auto=format&fit=crop&q=80"
-                            alt="Laughing Group"
-                            class="rounded border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
                         <div
-                            class="bg-[#111] p-6 border border-green-500/30 flex flex-col justify-center items-center text-center">
+                            class="h-48 rounded border border-white/10 bg-[#111] flex items-center justify-center group hover:border-purple-500 transition-colors">
+                            <div class="text-center">
+                                <i data-lucide="users"
+                                    class="w-12 h-12 text-purple-500 mx-auto mb-2 opacity-80 group-hover:scale-110 transition-transform"></i>
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Group Fun</span>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-[#111] p-6 border border-green-500/30 flex flex-col justify-center items-center text-center h-48 rounded">
                             <i data-lucide="party-popper" class="w-8 h-8 text-green-500 mb-2"></i>
                             <h4 class="font-bold text-white">Birthday Special</h4>
                             <p class="text-xs text-gray-400 mt-1">Free session for the birthday pilot with groups of 5+
@@ -827,93 +760,33 @@
         </div>
     </section>
 
-    <!-- SECTION 7: TESTIMONIALS (NEW) -->
+    <!-- SECTION 7: TESTIMONIALS (RESTORED) -->
     <section id="reviews" class="py-24 bg-[#050505] relative border-t border-white/5">
         <div class="container mx-auto px-6 reveal">
             <h2 class="text-3xl md:text-4xl font-bold text-center brand-font mb-16 uppercase">What Pilots Are <span
                     class="text-purple-500">Saying</span></h2>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Review 1 -->
-                <div class="bg-[#111] p-8 border border-white/5 relative">
-                    <i data-lucide="quote" class="absolute top-4 right-4 w-8 h-8 text-purple-500/20"></i>
-                    <div class="flex text-[var(--neon-yellow)] mb-4">
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                    </div>
-                    <p class="text-gray-300 text-sm mb-6 italic">"Absolutely insane! The wind effects made the shooting
-                        game feel terrifyingly real. Best arcade experience in Birmingham."</p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center font-bold">J
-                        </div>
-                        <div>
-                            <p class="font-bold text-sm">James T.</p>
-                            <p class="text-xs text-gray-500">Local Guide</p>
-                        </div>
-                    </div>
+                <div class="bg-[#111] p-8 border border-white/5 italic text-gray-300">"Absolutely insane! The wind
+                    effects made the shooting game feel terrifyingly real. Best arcade experience in Birmingham."
+                    <br><span class="text-purple-500 font-bold not-italic">- James T.</span>
                 </div>
-
-                <!-- Review 2 -->
-                <div class="bg-[#111] p-8 border border-white/5 relative">
-                    <i data-lucide="quote" class="absolute top-4 right-4 w-8 h-8 text-purple-500/20"></i>
-                    <div class="flex text-[var(--neon-yellow)] mb-4">
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                    </div>
-                    <p class="text-gray-300 text-sm mb-6 italic">"Booked a squad pack for my boyfriend's birthday. The
-                        staff were super helpful and the bar drinks are thematic and tasty!"</p>
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="w-10 h-10 bg-[var(--neon-cyan)] text-black rounded-full flex items-center justify-center font-bold">
-                            S</div>
-                        <div>
-                            <p class="font-bold text-sm">Sarah M.</p>
-                            <p class="text-xs text-gray-500">Verified Pilot</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Review 3 -->
-                <div class="bg-[#111] p-8 border border-white/5 relative">
-                    <i data-lucide="quote" class="absolute top-4 right-4 w-8 h-8 text-purple-500/20"></i>
-                    <div class="flex text-[var(--neon-yellow)] mb-4">
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                    </div>
-                    <p class="text-gray-300 text-sm mb-6 italic">"The Star Tower simulator is intense. Definitely not
-                        for the faint-hearted. Can't wait to go back and try the others."</p>
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="w-10 h-10 bg-[var(--neon-magenta)] text-black rounded-full flex items-center justify-center font-bold">
-                            M</div>
-                        <div>
-                            <p class="font-bold text-sm">Mike R.</p>
-                            <p class="text-xs text-gray-500">Verified Pilot</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="bg-[#111] p-8 border border-white/5 italic text-gray-300">"Booked a squad pack for my
+                    boyfriend's birthday. Staff were super helpful and the bar drinks are thematic and tasty!" <br><span
+                        class="text-[var(--neon-cyan)] font-bold not-italic">- Sarah M.</span></div>
+                <div class="bg-[#111] p-8 border border-white/5 italic text-gray-300">"The Star Tower is intense.
+                    Definitely not for the faint-hearted. Can't wait to go back and try the others." <br><span
+                        class="text-[var(--neon-magenta)] font-bold not-italic">- Mike R.</span></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 8: FAQ (NEW) -->
+    <!-- SECTION 8: FAQ (RESTORED) -->
     <section id="faq" class="py-24 bg-black border-t border-white/5">
         <div class="container mx-auto px-6 max-w-4xl reveal">
             <h2 class="text-3xl md:text-4xl font-bold text-center brand-font mb-4 uppercase">Mission <span
                     class="text-[var(--neon-cyan)]">Intelligence</span></h2>
             <p class="text-center text-gray-400 mb-12">Common questions before deployment.</p>
-
             <div class="space-y-4">
-                <!-- FAQ Item 1 -->
                 <div class="border border-white/10 bg-[#111]">
                     <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
                         onclick="toggleFaq(this)">
@@ -926,8 +799,6 @@
                             maximum comfort, we recommend wearing contact lenses if possible.</p>
                     </div>
                 </div>
-
-                <!-- FAQ Item 2 -->
                 <div class="border border-white/10 bg-[#111]">
                     <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
                         onclick="toggleFaq(this)">
@@ -940,8 +811,6 @@
                             headset fits correctly. Younger pilots are welcome in our Retro Arcade zone!</p>
                     </div>
                 </div>
-
-                <!-- FAQ Item 3 -->
                 <div class="border border-white/10 bg-[#111]">
                     <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
                         onclick="toggleFaq(this)">
@@ -955,8 +824,6 @@
                             shooting games rather than the motion simulators.</p>
                     </div>
                 </div>
-
-                <!-- FAQ Item 4 -->
                 <div class="border border-white/10 bg-[#111]">
                     <button class="w-full text-left px-6 py-4 flex justify-between items-center focus:outline-none"
                         onclick="toggleFaq(this)">
@@ -973,25 +840,20 @@
         </div>
     </section>
 
-    <!-- SECTION 9: LOCATION & HOURS -->
+    <!-- SECTION 9: LOCATION & HOURS (RESTORED) -->
     <section id="location" class="py-24 bg-[#050505] relative border-t border-white/5">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Text Info -->
                 <div class="space-y-10 reveal">
                     <div>
                         <h2 class="text-[var(--neon-cyan)] text-sm font-bold tracking-[0.3em] uppercase mb-2">Visit Base
                         </h2>
-                        <h3 class="text-4xl md:text-6xl font-black uppercase brand-font mb-6">
-                            Find <span class="text-white">Us</span>
-                        </h3>
-                        <p class="text-gray-400 max-w-md">
-                            Drop by for a quick mission or book the entire arena for your squad.
-                        </p>
+                        <h3 class="text-4xl md:text-6xl font-black uppercase brand-font mb-6">Find <span
+                                class="text-white">Us</span></h3>
+                        <p class="text-gray-400 max-w-md">Drop by for a quick mission or book the entire arena for your
+                            squad.</p>
                     </div>
-
                     <div class="space-y-6 font-mono">
-                        <!-- Hours -->
                         <div class="flex items-start gap-4">
                             <div
                                 class="w-12 h-12 bg-white/5 flex items-center justify-center border border-white/10 text-[var(--neon-magenta)]">
@@ -1000,27 +862,18 @@
                             <div>
                                 <h4 class="text-white font-bold uppercase tracking-wider mb-2">Operating Hours</h4>
                                 <div class="space-y-1 text-sm">
-                                    <div class="flex justify-between gap-8">
-                                        <span class="text-gray-400">Mon - Thu</span>
-                                        <span class="text-[var(--neon-cyan)] font-bold">12:00pm - 9:00pm</span>
-                                    </div>
-                                    <div class="flex justify-between gap-8">
-                                        <span class="text-gray-400">Fri</span>
-                                        <span class="text-[var(--neon-cyan)] font-bold">12:00pm - 10:00pm</span>
-                                    </div>
-                                    <div class="flex justify-between gap-8">
-                                        <span class="text-gray-400">Sat</span>
-                                        <span class="text-[var(--neon-cyan)] font-bold">12:00pm - 10:00pm</span>
-                                    </div>
-                                    <div class="flex justify-between gap-8">
-                                        <span class="text-gray-400">Sun</span>
-                                        <span class="text-[var(--neon-cyan)] font-bold">12:00pm - 9:00pm</span>
-                                    </div>
+                                    <div class="flex justify-between gap-8"><span class="text-gray-400">Mon -
+                                            Thu</span><span class="text-[var(--neon-cyan)] font-bold">12:00pm -
+                                            9:00pm</span></div>
+                                    <div class="flex justify-between gap-8"><span class="text-gray-400">Fri</span><span
+                                            class="text-[var(--neon-cyan)] font-bold">12:00pm - 10:00pm</span></div>
+                                    <div class="flex justify-between gap-8"><span class="text-gray-400">Sat</span><span
+                                            class="text-[var(--neon-cyan)] font-bold">12:00pm - 10:00pm</span></div>
+                                    <div class="flex justify-between gap-8"><span class="text-gray-400">Sun</span><span
+                                            class="text-[var(--neon-cyan)] font-bold">12:00pm - 9:00pm</span></div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Address -->
                         <div class="flex items-start gap-4">
                             <div
                                 class="w-12 h-12 bg-white/5 flex items-center justify-center border border-white/10 text-[var(--neon-yellow)]">
@@ -1034,167 +887,130 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Map Widget -->
                 <div class="relative h-[400px] w-full border border-white/10 p-2 bg-white/5 reveal">
-                    <!-- Decorative Corners -->
                     <div
                         class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[var(--neon-cyan)] -mt-1 -ml-1">
                     </div>
                     <div
                         class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[var(--neon-magenta)] -mb-1 -mr-1">
                     </div>
-
-                    <!-- Google Maps Iframe -->
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.347596856726!2d-1.899451423450638!3d52.47152067204856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bc8a5b28358d%3A0x88506168541315!2s143%20Bromsgrove%20St%2C%20Birmingham%20B5%206RG!5e0!3m2!1sen!2suk!4v1709228494116!5m2!1sen!2suk"
                         class="w-full h-full grayscale invert hover:grayscale-0 hover:invert-0 transition-all duration-500"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black border-t border-white/10 pt-16 pb-24 md:pb-8">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-10">
-                <div class="text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
-                        <img src="WechatIMG78.png" alt="Logo" class="h-10 w-auto">
-                        <span class="brand-font text-2xl font-bold">CRAZY CUBE</span>
-                    </div>
-                    <p class="text-gray-500 text-sm max-w-xs">
-                        The future of entertainment is here. Located in the heart of the city.
-                    </p>
-                </div>
-
-                <div class="flex gap-6">
-                    <a href="#"
-                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--neon-cyan)] hover:text-black transition-colors">
-                        <i data-lucide="instagram" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#"
-                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--neon-magenta)] hover:text-black transition-colors">
-                        <i data-lucide="twitter" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#"
-                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--neon-yellow)] hover:text-black transition-colors">
-                        <i data-lucide="facebook" class="w-5 h-5"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="mt-16 pt-8 border-t border-white/5 text-center text-gray-600 text-xs font-mono">
-                &copy; 2024 CRAZY CUBE VR. ALL RIGHTS RESERVED.
-            </div>
-        </div>
+    <footer class="bg-black border-t border-white/10 pt-16 pb-24 md:pb-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2024 CRAZY CUBE VR. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <!-- MOBILE STICKY BUTTON (NEW) -->
+    <!-- MOBILE STICKY BUTTON -->
     <div
         class="fixed bottom-0 left-0 w-full z-40 md:hidden p-4 bg-gradient-to-t from-black via-black/90 to-transparent">
         <button onclick="openBookingModal()"
-            class="w-full bg-[var(--neon-cyan)] text-black font-bold uppercase py-4 shadow-[0_0_20px_rgba(0,255,255,0.4)] animate-pulse">
-            Book Mission Now
-        </button>
+            class="w-full bg-[var(--neon-cyan)] text-black font-bold uppercase py-4 shadow-[0_0_20px_rgba(0,255,255,0.4)] animate-pulse">Book
+            Mission Now</button>
     </div>
 
     <!-- BOOKING MODAL -->
     <div id="booking-modal" class="hidden-modal fixed inset-0 z-[100] flex items-center justify-center">
-        <!-- Backdrop -->
         <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="closeBookingModal()"></div>
-
-        <!-- Modal Content -->
         <div
-            class="relative z-10 w-full max-w-4xl h-[90vh] bg-[#111] border border-[var(--neon-cyan)] shadow-2xl overflow-hidden flex flex-col">
-            <!-- Header -->
+            class="relative z-10 w-full max-w-4xl h-[90vh] bg-[#111] border border-[var(--neon-cyan)] shadow-2xl flex flex-col">
             <div class="flex justify-between items-center p-4 border-b border-white/10 bg-black">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-[var(--neon-cyan)] rounded-full animate-pulse"></span>
-                    <span class="brand-font text-xl font-bold">BOOK MISSION</span>
-                </div>
-                <button onclick="closeBookingModal()" class="text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="x" class="w-8 h-8"></i>
-                </button>
+                <span class="brand-font text-xl font-bold text-white">BOOK MISSION</span>
+                <button onclick="closeBookingModal()" class="text-gray-400 hover:text-white"><i data-lucide="x"
+                        class="w-8 h-8"></i></button>
             </div>
-
-            <!-- Embed Container -->
-            <div class="flex-1 overflow-y-auto p-4 bg-white/5" id="square-embed-container">
-                <!-- 
-                    =============== SQUARE BOOKING INSTRUCTIONS ===============
-                    1. Go to your Square Dashboard > Appointments > Online Booking.
-                    2. Copy the Website Embed code (it is usually a script or iframe).
-                    3. Delete the "placeholder-content" div below.
-                    4. Paste your code here.
-                -->
-
-                <!-- [START] PLACEHOLDER CONTENT (DELETE THIS AFTER PASTING CODE) -->
-                <div
-                    class="h-full flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-gray-700 rounded-lg">
-                    <i data-lucide="calendar-clock" class="w-16 h-16 text-[var(--neon-cyan)] mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-2">Booking System Integration</h3>
-                    <p class="text-gray-400 max-w-md mb-6">
-                        This is where your Square Booking calendar will appear.
-                        <br><br>
-                        <span class="text-xs font-mono bg-black p-2 rounded text-[var(--neon-yellow)]">
-                            Paste your Square Embed Code in index.html line ~445
-                        </span>
-                    </p>
-                    <a href="https://squareup.com/dashboard/" target="_blank"
-                        class="bg-[var(--neon-magenta)] text-black px-6 py-2 font-bold hover:bg-white transition-colors">
-                        Go to Square Dashboard
-                    </a>
-                </div>
-                <!-- [END] PLACEHOLDER CONTENT -->
-
-                <!-- PASTE YOUR SQUARE EMBED CODE HERE -->
-
+            <div class="flex-1 p-4 bg-white/5 overflow-y-auto" id="square-embed-container">
+                <!-- Square Appointments Embed Code -->
+                <script src='https://square.site/appointments/buyer/widget/lfyjskchramp5b/LCEYV78D65VDJ.js'></script>
             </div>
         </div>
     </div>
 
+    <!-- GAMEPLAY MODAL -->
+    <div id="gameplay-modal" class="hidden-modal fixed inset-0 z-[100] flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md" onclick="closeGameplayModal()"></div>
+        <div
+            class="relative z-10 w-full max-w-5xl aspect-video bg-black border border-[var(--neon-magenta)] shadow-2xl flex flex-col">
+            <div class="absolute top-4 right-4 z-20">
+                <button onclick="closeGameplayModal()"
+                    class="bg-black/50 p-2 rounded-full text-white hover:text-[var(--neon-magenta)] transition-colors border border-white/20">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <video id="gameplay-video" controls class="w-full h-full object-contain">
+                <source src="1764608757011029.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
     <script>
-        // Initialize Icons
         lucide.createIcons();
 
         // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
         });
 
         // Booking Modal Logic
-        const modal = document.getElementById('booking-modal');
-
+        const bookingModal = document.getElementById('booking-modal');
         function openBookingModal() {
-            modal.classList.remove('hidden-modal');
-            modal.classList.add('visible-modal');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            bookingModal.classList.remove('hidden-modal');
+            bookingModal.classList.add('visible-modal');
+            document.body.style.overflow = 'hidden';
         }
-
         function closeBookingModal() {
-            modal.classList.remove('visible-modal');
-            modal.classList.add('hidden-modal');
-            document.body.style.overflow = 'auto'; // Restore background scrolling
+            bookingModal.classList.remove('visible-modal');
+            bookingModal.classList.add('hidden-modal');
+            document.body.style.overflow = 'auto';
         }
 
-        // Close on Escape key
-        document.addEventListener('keydown', function (event) {
-            if (event.key === "Escape") {
-                closeBookingModal();
+        // Gameplay Modal Logic
+        const gameplayModal = document.getElementById('gameplay-modal');
+        const gameplayVideo = document.getElementById('gameplay-video');
+
+        function openGameplayModal() {
+            gameplayModal.classList.remove('hidden-modal');
+            gameplayModal.classList.add('visible-modal');
+            document.body.style.overflow = 'hidden';
+            if (gameplayVideo) {
+                // Handle play() promise to prevent AbortError
+                const playPromise = gameplayVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Video playback was prevented or aborted:", error);
+                    });
+                }
             }
-        });
+        }
+
+        function closeGameplayModal() {
+            gameplayModal.classList.remove('visible-modal');
+            gameplayModal.classList.add('hidden-modal');
+            document.body.style.overflow = 'auto';
+            if (gameplayVideo) {
+                gameplayVideo.pause();
+                gameplayVideo.currentTime = 0;
+            }
+        }
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
 
         // FAQ Toggle Logic
         function toggleFaq(button) {
             const content = button.nextElementSibling;
-            // FIXED: Lucide replaces <i> with <svg>, so we select the svg
             const icon = button.querySelector('svg');
 
             content.classList.toggle('hidden');
@@ -1212,24 +1028,17 @@
             }
         }
 
-        // Scroll Animation Logic
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
+        // Scroll Animation Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Only animate once
+                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 
